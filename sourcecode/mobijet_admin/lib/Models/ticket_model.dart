@@ -1,0 +1,642 @@
+//*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Definition attached with source code. *********************
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:thinkcreative_technologies/Configs/db_keys.dart';
+
+class TicketModel {
+  final String ticketcosmeticID;
+  final String ticketID;
+  final String ticketcustomerID;
+  final String ticketissuedby;
+  final int ticketStatus;
+  final String ticketTitle;
+  final String ticketPhotoURL;
+  final String ticketDepartmentID;
+  final String departmentNamestoredinList;
+  final String ticketDescription;
+  final String ticketcreatedBy;
+  final String ticketidFiltered;
+  final String ticketisTyingID;
+  final String ticketclosedby;
+  final String ticketchatdeletedby;
+  final Map ticketMap9;
+  final int ticketcreatedOn;
+  final int ticketlatestTimestampForCustomer;
+  final int ticketmediaDeletedTimestamp;
+  final List<dynamic> tktMEMBERSactiveList;
+  final List<dynamic> ticketadminlist;
+  final List<dynamic> transcriptsGeneratedBy;
+  final int rating;
+  final bool isreviewRequired;
+  final String ticketSecondaryStatus;
+  final String tktLastMssgBy;
+  String? liveAgentID = "";
+  String? feedback = "";
+  String? tktString4 = "";
+  String? tktString5 = "";
+  String? tktString6 = "";
+  String? tktString7 = "";
+  String? tktString8 = "";
+  String? tktString9 = "";
+  String? tktString10 = "";
+  String? tktString11 = "";
+  String? tktString12 = "";
+  String? tktString13 = "";
+  String? tktString14 = "";
+  String? tktString15 = "";
+  String? tktString16 = "";
+  String? tktString17 = "";
+  String? tktString18 = "";
+  List<dynamic> tktNOTIFICATIONactiveList = [];
+  final List<dynamic> tktdepartmentNameList;
+  List<dynamic>? tktList3 = [];
+  List<dynamic>? tktList4 = [];
+  List<dynamic>? tktList5 = [];
+  List<dynamic>? tktList6 = [];
+  List<dynamic>? tktList7 = [];
+  List<dynamic>? tktList8 = [];
+  List<dynamic>? tktList9 = [];
+  List<dynamic>? tktList10 = [];
+  final int ticketlatestTimestampForAgents;
+  final int ticketStatusShort;
+  int? ticketClosedOn = 0;
+  int? liveAgentLastonline = 0;
+  int? tktInt5 = 0;
+  int? tktInt6 = 0;
+  int? tktInt7 = 0;
+  int? tktInt8 = 0;
+  int? tktInt9 = 0;
+  int? tktInt10 = 0;
+  bool? tktBool1 = false;
+  bool? tktBool2 = false;
+  bool? tktBool3 = false;
+  bool? tktBool4 = false;
+  bool? tktBool5 = false;
+  bool? tktBool6 = false;
+  bool? tktBool7 = true;
+  bool? tktBool8 = true;
+  bool? tktBool9 = true;
+  bool? tktBool10 = true;
+  bool? tktBool11 = true;
+  bool? tktBool12 = true;
+  bool? tktBool13 = true;
+  bool? tktBool14 = true;
+  bool? tktBool15 = true;
+  Map? ticketCallInfoMap = {};
+  Map? tktMap2 = {};
+  Map? tktMap3 = {};
+  Map? tktMap4 = {};
+  Map? tktMap5 = {};
+  Map? tktMap6 = {};
+  Map? tktMap7 = {};
+  Map? tktMap8 = {};
+
+  TicketModel({
+    required this.ticketcosmeticID,
+    required this.ticketID,
+    required this.ticketcustomerID,
+    required this.ticketissuedby,
+    required this.ticketStatus,
+    required this.ticketTitle,
+    required this.ticketPhotoURL,
+    required this.ticketDepartmentID,
+    required this.departmentNamestoredinList,
+    required this.ticketDescription,
+    required this.ticketcreatedBy,
+    required this.ticketidFiltered,
+    required this.ticketisTyingID,
+    required this.ticketclosedby,
+    required this.ticketchatdeletedby,
+    required this.ticketMap9,
+    required this.ticketcreatedOn,
+    required this.ticketlatestTimestampForCustomer,
+    required this.ticketmediaDeletedTimestamp,
+    required this.tktMEMBERSactiveList,
+    required this.ticketadminlist,
+    required this.transcriptsGeneratedBy,
+    required this.rating,
+    required this.isreviewRequired,
+    required this.ticketSecondaryStatus,
+    required this.tktLastMssgBy,
+    this.liveAgentID = "",
+    this.feedback = "",
+    this.tktString4 = "",
+    this.tktString5 = "",
+    this.tktString6 = "",
+    this.tktString7 = "",
+    this.tktString8 = "",
+    this.tktString9 = "",
+    this.tktString10 = "",
+    this.tktString11 = "",
+    this.tktString12 = "",
+    this.tktString13 = "",
+    this.tktString14 = "",
+    this.tktString15 = "",
+    this.tktString16 = "",
+    this.tktString17 = "",
+    this.tktString18 = "",
+    required this.tktNOTIFICATIONactiveList,
+    required this.tktdepartmentNameList,
+    this.tktList3 = const [],
+    this.tktList4 = const [],
+    this.tktList5 = const [],
+    this.tktList6 = const [],
+    this.tktList7 = const [],
+    this.tktList8 = const [],
+    this.tktList9 = const [],
+    this.tktList10 = const [],
+    required this.ticketlatestTimestampForAgents,
+    required this.ticketStatusShort,
+    this.ticketClosedOn = 0,
+    this.liveAgentLastonline = 0,
+    this.tktInt5 = 0,
+    this.tktInt6 = 0,
+    this.tktInt7 = 0,
+    this.tktInt8 = 0,
+    this.tktInt9 = 0,
+    this.tktInt10 = 0,
+    this.tktBool1 = false,
+    this.tktBool2 = false,
+    this.tktBool3 = false,
+    this.tktBool4 = false,
+    this.tktBool5 = false,
+    this.tktBool6 = false,
+    this.tktBool7 = true,
+    this.tktBool8 = true,
+    this.tktBool9 = true,
+    this.tktBool10 = true,
+    this.tktBool11 = true,
+    this.tktBool12 = true,
+    this.tktBool13 = true,
+    this.tktBool14 = true,
+    this.tktBool15 = true,
+    this.ticketCallInfoMap = const {},
+    this.tktMap2 = const {},
+    this.tktMap3 = const {},
+    this.tktMap4 = const {},
+    this.tktMap5 = const {},
+    this.tktMap6 = const {},
+    this.tktMap7 = const {},
+    this.tktMap8 = const {},
+  });
+
+  TicketModel copyWith(
+      {final String? ticketcosmeticID,
+      final String? ticketID,
+      final String? ticketcustomerID,
+      final String? ticketissuedby,
+      final int? ticketStatus,
+      final String? ticketTitle,
+      final String? ticketPhotoURL,
+      final String? ticketDepartmentID,
+      final String? departmentNamestoredinList,
+      final String? ticketDescription,
+      final String? ticketcreatedBy,
+      final String? ticketidFiltered,
+      final String? ticketisTyingID,
+      final String? ticketclosedby,
+      final String? ticketchatdeletedby,
+      final Map? ticketMap9,
+      final int? ticketcreatedOn,
+      final int? ticketlatestTimestampForCustomer,
+      final int? ticketmediaDeletedTimestamp,
+      final List<dynamic>? tktMEMBERSactiveList,
+      final List<dynamic>? ticketadminlist,
+      final List<dynamic>? transcriptsGeneratedBy,
+      final int? rating,
+      final bool? isreviewRequired,
+      final String? ticketSecondaryStatus,
+      final String? tktLastMssgBy,
+      final String? liveAgentID,
+      final String? feedback,
+      final String? tktString4,
+      final String? tktString5,
+      final String? tktString6,
+      final String? tktString7,
+      final String? tktString8,
+      final String? tktString9,
+      final String? tktString10,
+      final String? tktString11,
+      final String? tktString12,
+      final String? tktString13,
+      final String? tktString14,
+      final String? tktString15,
+      final String? tktString16,
+      final String? tktString17,
+      final String? tktString18,
+      required final List<dynamic> tktNOTIFICATIONactiveList,
+      final List<dynamic>? tktdepartmentNameList,
+      final List<dynamic>? tktList3,
+      final List<dynamic>? tktList4,
+      final List<dynamic>? tktList5,
+      final List<dynamic>? tktList6,
+      final List<dynamic>? tktList7,
+      final List<dynamic>? tktList8,
+      final List<dynamic>? tktList9,
+      final List<dynamic>? tktList10,
+      final int? ticketlatestTimestampForAgents,
+      final int? ticketStatusShort,
+      final int? ticketClosedOn,
+      final int? liveAgentLastonline,
+      final int? tktInt5,
+      final int? tktInt6,
+      final int? tktInt7,
+      final int? tktInt8,
+      final int? tktInt9,
+      final int? tktInt10,
+      final bool? tktBool1,
+      final bool? tktBool2,
+      final bool? tktBool3,
+      final bool? tktBool4,
+      final bool? tktBool5,
+      final bool? tktBool6,
+      final bool? tktBool7,
+      final bool? tktBool8,
+      final bool? tktBool9,
+      final bool? tktBool10,
+      final bool? tktBool11,
+      final bool? tktBool12,
+      final bool? tktBool13,
+      final bool? tktBool14,
+      final bool? tktBool15,
+      final Map? ticketCallInfoMap,
+      final Map? tktMap2,
+      final Map? tktMap3,
+      final Map? tktMap4,
+      final Map? tktMap5,
+      final Map? tktMap6,
+      final Map? tktMap7,
+      final Map? tktMap8}) {
+    return TicketModel(
+      ticketcosmeticID: ticketcosmeticID ?? this.ticketcosmeticID,
+      ticketID: ticketID ?? this.ticketID,
+      ticketcustomerID: ticketcustomerID ?? this.ticketcustomerID,
+      ticketissuedby: ticketissuedby ?? this.ticketissuedby,
+      ticketStatus: ticketStatus ?? this.ticketStatus,
+      ticketTitle: ticketTitle ?? this.ticketTitle,
+      ticketPhotoURL: ticketPhotoURL ?? this.ticketPhotoURL,
+      ticketDepartmentID: ticketDepartmentID ?? this.ticketDepartmentID,
+      departmentNamestoredinList:
+          departmentNamestoredinList ?? this.departmentNamestoredinList,
+      ticketcreatedBy: ticketcreatedBy ?? this.ticketcreatedBy,
+      ticketDescription: ticketDescription ?? this.ticketDescription,
+      ticketidFiltered: ticketidFiltered ?? this.ticketidFiltered,
+      ticketisTyingID: ticketisTyingID ?? this.ticketisTyingID,
+      ticketclosedby: ticketclosedby ?? this.ticketclosedby,
+      ticketchatdeletedby: ticketchatdeletedby ?? this.ticketchatdeletedby,
+      ticketMap9: ticketMap9 ?? this.ticketMap9,
+      ticketcreatedOn: ticketcreatedOn ?? this.ticketcreatedOn,
+      ticketlatestTimestampForCustomer: ticketlatestTimestampForCustomer ??
+          this.ticketlatestTimestampForCustomer,
+      ticketmediaDeletedTimestamp:
+          ticketmediaDeletedTimestamp ?? this.ticketmediaDeletedTimestamp,
+      tktMEMBERSactiveList: tktMEMBERSactiveList ?? this.tktMEMBERSactiveList,
+      ticketadminlist: ticketadminlist ?? this.ticketadminlist,
+      transcriptsGeneratedBy:
+          transcriptsGeneratedBy ?? this.transcriptsGeneratedBy,
+      rating: rating ?? this.rating,
+      isreviewRequired: isreviewRequired ?? this.isreviewRequired,
+      ticketSecondaryStatus:
+          ticketSecondaryStatus ?? this.ticketSecondaryStatus,
+      tktLastMssgBy: tktLastMssgBy ?? this.tktLastMssgBy,
+      liveAgentID: liveAgentID ?? this.liveAgentID,
+      feedback: feedback ?? this.feedback,
+      tktString4: tktString4 ?? this.tktString4,
+      tktString5: tktString5 ?? this.tktString5,
+      tktString6: tktString6 ?? this.tktString6,
+      tktString7: tktString7 ?? this.tktString7,
+      tktString8: tktString8 ?? this.tktString8,
+      tktString9: tktString9 ?? this.tktString9,
+      tktString10: tktString10 ?? this.tktString10,
+      tktString11: tktString11 ?? this.tktString11,
+      tktString12: tktString12 ?? this.tktString12,
+      tktString13: tktString13 ?? this.tktString13,
+      tktString14: tktString14 ?? this.tktString14,
+      tktString15: tktString15 ?? this.tktString15,
+      tktString16: tktString16 ?? this.tktString16,
+      tktString17: tktString17 ?? this.tktString17,
+      tktString18: tktString18 ?? this.tktString18,
+      tktNOTIFICATIONactiveList: tktNOTIFICATIONactiveList,
+      tktdepartmentNameList:
+          tktdepartmentNameList ?? this.tktdepartmentNameList,
+      tktList3: tktList3 ?? this.tktList3,
+      tktList4: tktList4 ?? this.tktList4,
+      tktList5: tktList5 ?? this.tktList5,
+      tktList6: tktList6 ?? this.tktList6,
+      tktList7: tktList7 ?? this.tktList7,
+      tktList8: tktList8 ?? this.tktList8,
+      tktList9: tktList9 ?? this.tktList9,
+      tktList10: tktList10 ?? this.tktList10,
+      ticketlatestTimestampForAgents:
+          ticketlatestTimestampForAgents ?? this.ticketlatestTimestampForAgents,
+      ticketStatusShort: ticketStatusShort ?? this.ticketStatusShort,
+      ticketClosedOn: ticketClosedOn ?? this.ticketClosedOn,
+      liveAgentLastonline: liveAgentLastonline ?? this.liveAgentLastonline,
+      tktInt5: tktInt5 ?? this.tktInt5,
+      tktInt6: tktInt6 ?? this.tktInt6,
+      tktInt7: tktInt7 ?? this.tktInt7,
+      tktInt8: tktInt8 ?? this.tktInt8,
+      tktInt9: tktInt9 ?? this.tktInt9,
+      tktInt10: tktInt10 ?? this.tktInt10,
+      tktBool1: tktBool1 ?? this.tktBool1,
+      tktBool2: tktBool2 ?? this.tktBool2,
+      tktBool3: tktBool3 ?? this.tktBool3,
+      tktBool4: tktBool4 ?? this.tktBool4,
+      tktBool5: tktBool5 ?? this.tktBool5,
+      tktBool6: tktBool6 ?? this.tktBool6,
+      tktBool7: tktBool7 ?? this.tktBool7,
+      tktBool8: tktBool8 ?? this.tktBool8,
+      tktBool9: tktBool9 ?? this.tktBool9,
+      tktBool10: tktBool10 ?? this.tktBool10,
+      tktBool11: tktBool11 ?? this.tktBool11,
+      tktBool12: tktBool12 ?? this.tktBool12,
+      tktBool13: tktBool13 ?? this.tktBool13,
+      tktBool14: tktBool14 ?? this.tktBool14,
+      tktBool15: tktBool15 ?? this.tktBool15,
+      ticketCallInfoMap: ticketCallInfoMap ?? this.ticketCallInfoMap,
+      tktMap2: tktMap2 ?? this.tktMap2,
+      tktMap3: tktMap3 ?? this.tktMap3,
+      tktMap4: tktMap4 ?? this.tktMap4,
+      tktMap5: tktMap5 ?? this.tktMap5,
+      tktMap6: tktMap6 ?? this.tktMap6,
+      tktMap7: tktMap7 ?? this.tktMap7,
+      tktMap8: tktMap8 ?? this.tktMap8,
+    );
+  }
+
+  factory TicketModel.fromJson(Map<String, dynamic> doc) {
+    return TicketModel(
+      ticketcosmeticID: doc[Dbkeys.ticketcosmeticID],
+      ticketID: doc[Dbkeys.ticketID],
+      ticketcustomerID: doc[Dbkeys.ticketcustomerID],
+      ticketissuedby: doc[Dbkeys.ticketissuedby],
+      ticketStatus: doc[Dbkeys.ticketStatus],
+      ticketTitle: doc[Dbkeys.ticketTitle],
+      ticketPhotoURL: doc[Dbkeys.ticketPhotoURL],
+      ticketDepartmentID: doc[Dbkeys.ticketDepartmentID],
+      departmentNamestoredinList: doc[Dbkeys.departmentNamestoredinList],
+      ticketcreatedBy: doc[Dbkeys.ticketcreatedBy],
+      ticketDescription: doc[Dbkeys.ticketDescription],
+      ticketidFiltered: doc[Dbkeys.ticketidFiltered],
+      ticketisTyingID: doc[Dbkeys.ticketisTyingID],
+      ticketclosedby: doc[Dbkeys.ticketclosedby],
+      ticketchatdeletedby: doc[Dbkeys.ticketchatdeletedby],
+      ticketMap9: doc[Dbkeys.ticketMap9],
+      ticketcreatedOn: doc[Dbkeys.ticketcreatedOn],
+      ticketlatestTimestampForCustomer:
+          doc[Dbkeys.ticketlatestTimestampForCustomer],
+      ticketmediaDeletedTimestamp: doc[Dbkeys.ticketmediaDeletedTimestamp],
+      tktMEMBERSactiveList: doc[Dbkeys.tktMEMBERSactiveList],
+      ticketadminlist: doc[Dbkeys.ticketadminlist],
+      transcriptsGeneratedBy: doc[Dbkeys.transcriptsGeneratedBy],
+      rating: doc[Dbkeys.rating],
+      isreviewRequired: doc[Dbkeys.isreviewRequired],
+      ticketSecondaryStatus: doc[Dbkeys.ticketSecondaryStatus],
+      tktLastMssgBy: doc[Dbkeys.tktLastMssgBy],
+      liveAgentID: doc[Dbkeys.liveAgentID],
+      feedback: doc[Dbkeys.feedback],
+      tktString4: doc[Dbkeys.tktString4],
+      tktString5: doc[Dbkeys.tktString5],
+      tktString6: doc[Dbkeys.tktString6],
+      tktString7: doc[Dbkeys.tktString7],
+      tktString8: doc[Dbkeys.tktString8],
+      tktString9: doc[Dbkeys.tktString9],
+      tktString10: doc[Dbkeys.tktString10],
+      tktString11: doc[Dbkeys.tktString11],
+      tktString12: doc[Dbkeys.tktString12],
+      tktString13: doc[Dbkeys.tktString13],
+      tktString14: doc[Dbkeys.tktString14],
+      tktString15: doc[Dbkeys.tktString15],
+      tktString16: doc[Dbkeys.tktString16],
+      tktString17: doc[Dbkeys.tktString17],
+      tktString18: doc[Dbkeys.tktString18],
+      tktNOTIFICATIONactiveList: doc[Dbkeys.tktNOTIFICATIONactiveList],
+      tktdepartmentNameList: doc[Dbkeys.tktdepartmentNameList],
+      tktList3: doc[Dbkeys.tktList3],
+      tktList4: doc[Dbkeys.tktList4],
+      tktList5: doc[Dbkeys.tktList5],
+      tktList6: doc[Dbkeys.tktList6],
+      tktList7: doc[Dbkeys.tktList7],
+      tktList8: doc[Dbkeys.tktList8],
+      tktList9: doc[Dbkeys.tktList9],
+      tktList10: doc[Dbkeys.tktList10],
+      ticketlatestTimestampForAgents:
+          doc[Dbkeys.ticketlatestTimestampForAgents],
+      ticketStatusShort: doc[Dbkeys.ticketStatusShort],
+      ticketClosedOn: doc[Dbkeys.ticketClosedOn],
+      liveAgentLastonline: doc[Dbkeys.liveAgentLastonline],
+      tktInt5: doc[Dbkeys.tktInt5],
+      tktInt6: doc[Dbkeys.tktInt6],
+      tktInt7: doc[Dbkeys.tktInt7],
+      tktInt8: doc[Dbkeys.tktInt8],
+      tktInt9: doc[Dbkeys.tktInt9],
+      tktInt10: doc[Dbkeys.tktInt10],
+      tktBool1: doc[Dbkeys.tktBool1],
+      tktBool2: doc[Dbkeys.tktBool2],
+      tktBool3: doc[Dbkeys.tktBool3],
+      tktBool4: doc[Dbkeys.tktBool4],
+      tktBool5: doc[Dbkeys.tktBool5],
+      tktBool6: doc[Dbkeys.tktBool6],
+      tktBool7: doc[Dbkeys.tktBool7],
+      tktBool8: doc[Dbkeys.tktBool8],
+      tktBool9: doc[Dbkeys.tktBool9],
+      tktBool10: doc[Dbkeys.tktBool10],
+      tktBool11: doc[Dbkeys.tktBool11],
+      tktBool12: doc[Dbkeys.tktBool12],
+      tktBool13: doc[Dbkeys.tktBool13],
+      tktBool14: doc[Dbkeys.tktBool14],
+      tktBool15: doc[Dbkeys.tktBool15],
+      ticketCallInfoMap: doc[Dbkeys.ticketCallInfoMap],
+      tktMap2: doc[Dbkeys.tktMap2],
+      tktMap3: doc[Dbkeys.tktMap3],
+      tktMap4: doc[Dbkeys.tktMap4],
+      tktMap5: doc[Dbkeys.tktMap5],
+      tktMap6: doc[Dbkeys.tktMap6],
+      tktMap7: doc[Dbkeys.tktMap7],
+      tktMap8: doc[Dbkeys.tktMap8],
+    );
+  }
+  factory TicketModel.fromSnapshot(DocumentSnapshot doc) {
+    return TicketModel(
+      ticketcosmeticID: doc[Dbkeys.ticketcosmeticID],
+      ticketID: doc[Dbkeys.ticketID],
+      ticketcustomerID: doc[Dbkeys.ticketcustomerID],
+      ticketissuedby: doc[Dbkeys.ticketissuedby],
+      ticketStatus: doc[Dbkeys.ticketStatus],
+      ticketTitle: doc[Dbkeys.ticketTitle],
+      ticketPhotoURL: doc[Dbkeys.ticketPhotoURL],
+      ticketDepartmentID: doc[Dbkeys.ticketDepartmentID],
+      departmentNamestoredinList: doc[Dbkeys.departmentNamestoredinList],
+      ticketcreatedBy: doc[Dbkeys.ticketcreatedBy],
+      ticketDescription: doc[Dbkeys.ticketDescription],
+      ticketidFiltered: doc[Dbkeys.ticketidFiltered],
+      ticketisTyingID: doc[Dbkeys.ticketisTyingID],
+      ticketclosedby: doc[Dbkeys.ticketclosedby],
+      ticketchatdeletedby: doc[Dbkeys.ticketchatdeletedby],
+      ticketMap9: doc[Dbkeys.ticketMap9],
+      ticketcreatedOn: doc[Dbkeys.ticketcreatedOn],
+      ticketlatestTimestampForCustomer:
+          doc[Dbkeys.ticketlatestTimestampForCustomer],
+      ticketmediaDeletedTimestamp: doc[Dbkeys.ticketmediaDeletedTimestamp],
+      tktMEMBERSactiveList: doc[Dbkeys.tktMEMBERSactiveList],
+      ticketadminlist: doc[Dbkeys.ticketadminlist],
+      transcriptsGeneratedBy: doc[Dbkeys.transcriptsGeneratedBy],
+      rating: doc[Dbkeys.rating],
+      isreviewRequired: doc[Dbkeys.isreviewRequired],
+      ticketSecondaryStatus: doc[Dbkeys.ticketSecondaryStatus],
+      tktLastMssgBy: doc[Dbkeys.tktLastMssgBy],
+      liveAgentID: doc[Dbkeys.liveAgentID],
+      feedback: doc[Dbkeys.feedback],
+      tktString4: doc[Dbkeys.tktString4],
+      tktString5: doc[Dbkeys.tktString5],
+      tktString6: doc[Dbkeys.tktString6],
+      tktString7: doc[Dbkeys.tktString7],
+      tktString8: doc[Dbkeys.tktString8],
+      tktString9: doc[Dbkeys.tktString9],
+      tktString10: doc[Dbkeys.tktString10],
+      tktString11: doc[Dbkeys.tktString11],
+      tktString12: doc[Dbkeys.tktString12],
+      tktString13: doc[Dbkeys.tktString13],
+      tktString14: doc[Dbkeys.tktString14],
+      tktString15: doc[Dbkeys.tktString15],
+      tktString16: doc[Dbkeys.tktString16],
+      tktString17: doc[Dbkeys.tktString17],
+      tktString18: doc[Dbkeys.tktString18],
+      tktNOTIFICATIONactiveList: doc[Dbkeys.tktNOTIFICATIONactiveList],
+      tktdepartmentNameList: doc[Dbkeys.tktdepartmentNameList],
+      tktList3: doc[Dbkeys.tktList3],
+      tktList4: doc[Dbkeys.tktList4],
+      tktList5: doc[Dbkeys.tktList5],
+      tktList6: doc[Dbkeys.tktList6],
+      tktList7: doc[Dbkeys.tktList7],
+      tktList8: doc[Dbkeys.tktList8],
+      tktList9: doc[Dbkeys.tktList9],
+      tktList10: doc[Dbkeys.tktList10],
+      ticketlatestTimestampForAgents:
+          doc[Dbkeys.ticketlatestTimestampForAgents],
+      ticketStatusShort: doc[Dbkeys.ticketStatusShort],
+      ticketClosedOn: doc[Dbkeys.ticketClosedOn],
+      liveAgentLastonline: doc[Dbkeys.liveAgentLastonline],
+      tktInt5: doc[Dbkeys.tktInt5],
+      tktInt6: doc[Dbkeys.tktInt6],
+      tktInt7: doc[Dbkeys.tktInt7],
+      tktInt8: doc[Dbkeys.tktInt8],
+      tktInt9: doc[Dbkeys.tktInt9],
+      tktInt10: doc[Dbkeys.tktInt10],
+      tktBool1: doc[Dbkeys.tktBool1],
+      tktBool2: doc[Dbkeys.tktBool2],
+      tktBool3: doc[Dbkeys.tktBool3],
+      tktBool4: doc[Dbkeys.tktBool4],
+      tktBool5: doc[Dbkeys.tktBool5],
+      tktBool6: doc[Dbkeys.tktBool6],
+      tktBool7: doc[Dbkeys.tktBool7],
+      tktBool8: doc[Dbkeys.tktBool8],
+      tktBool9: doc[Dbkeys.tktBool9],
+      tktBool10: doc[Dbkeys.tktBool10],
+      tktBool11: doc[Dbkeys.tktBool11],
+      tktBool12: doc[Dbkeys.tktBool12],
+      tktBool13: doc[Dbkeys.tktBool13],
+      tktBool14: doc[Dbkeys.tktBool14],
+      tktBool15: doc[Dbkeys.tktBool15],
+      ticketCallInfoMap: doc[Dbkeys.ticketCallInfoMap],
+      tktMap2: doc[Dbkeys.tktMap2],
+      tktMap3: doc[Dbkeys.tktMap3],
+      tktMap4: doc[Dbkeys.tktMap4],
+      tktMap5: doc[Dbkeys.tktMap5],
+      tktMap6: doc[Dbkeys.tktMap6],
+      tktMap7: doc[Dbkeys.tktMap7],
+      tktMap8: doc[Dbkeys.tktMap8],
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      Dbkeys.ticketcosmeticID: ticketcosmeticID,
+      Dbkeys.ticketID: ticketID,
+      Dbkeys.ticketcustomerID: ticketcustomerID,
+      Dbkeys.ticketissuedby: ticketissuedby,
+      Dbkeys.ticketStatus: ticketStatus,
+      Dbkeys.ticketTitle: ticketTitle,
+      Dbkeys.ticketPhotoURL: ticketPhotoURL,
+      Dbkeys.ticketDepartmentID: ticketDepartmentID,
+      Dbkeys.departmentNamestoredinList: departmentNamestoredinList,
+      Dbkeys.ticketcreatedBy: ticketcreatedBy,
+      Dbkeys.ticketDescription: ticketDescription,
+      Dbkeys.ticketidFiltered: ticketidFiltered,
+      Dbkeys.ticketisTyingID: ticketisTyingID,
+      Dbkeys.ticketclosedby: ticketclosedby,
+      Dbkeys.ticketchatdeletedby: ticketchatdeletedby,
+      Dbkeys.ticketMap9: ticketMap9,
+      Dbkeys.ticketcreatedOn: ticketcreatedOn,
+      Dbkeys.ticketlatestTimestampForCustomer: ticketlatestTimestampForCustomer,
+      Dbkeys.ticketmediaDeletedTimestamp: ticketmediaDeletedTimestamp,
+      Dbkeys.tktMEMBERSactiveList: tktMEMBERSactiveList,
+      Dbkeys.ticketadminlist: ticketadminlist,
+      Dbkeys.rating: rating,
+      Dbkeys.transcriptsGeneratedBy: transcriptsGeneratedBy,
+      Dbkeys.isreviewRequired: isreviewRequired,
+      Dbkeys.ticketSecondaryStatus: ticketSecondaryStatus,
+      Dbkeys.tktLastMssgBy: tktLastMssgBy,
+      Dbkeys.liveAgentID: liveAgentID,
+      Dbkeys.feedback: feedback,
+      Dbkeys.tktString4: tktString4,
+      Dbkeys.tktString5: tktString5,
+      Dbkeys.tktString6: tktString6,
+      Dbkeys.tktString7: tktString7,
+      Dbkeys.tktString8: tktString8,
+      Dbkeys.tktString9: tktString9,
+      Dbkeys.tktString10: tktString10,
+      Dbkeys.tktString11: tktString11,
+      Dbkeys.tktString12: tktString12,
+      Dbkeys.tktString13: tktString13,
+      Dbkeys.tktString14: tktString14,
+      Dbkeys.tktString15: tktString15,
+      Dbkeys.tktString16: tktString16,
+      Dbkeys.tktString17: tktString17,
+      Dbkeys.tktString18: tktString18,
+      Dbkeys.tktNOTIFICATIONactiveList: tktNOTIFICATIONactiveList,
+      Dbkeys.tktdepartmentNameList: tktdepartmentNameList,
+      Dbkeys.tktList3: tktList3,
+      Dbkeys.tktList4: tktList4,
+      Dbkeys.tktList5: tktList5,
+      Dbkeys.tktList6: tktList6,
+      Dbkeys.tktList7: tktList7,
+      Dbkeys.tktList8: tktList8,
+      Dbkeys.tktList9: tktList9,
+      Dbkeys.tktList10: tktList10,
+      Dbkeys.ticketlatestTimestampForAgents: ticketlatestTimestampForAgents,
+      Dbkeys.ticketStatusShort: ticketStatusShort,
+      Dbkeys.ticketClosedOn: ticketClosedOn,
+      Dbkeys.liveAgentLastonline: liveAgentLastonline,
+      Dbkeys.tktInt5: tktInt5,
+      Dbkeys.tktInt6: tktInt6,
+      Dbkeys.tktInt7: tktInt7,
+      Dbkeys.tktInt8: tktInt8,
+      Dbkeys.tktInt9: tktInt9,
+      Dbkeys.tktInt10: tktInt10,
+      Dbkeys.tktBool1: tktBool1,
+      Dbkeys.tktBool2: tktBool2,
+      Dbkeys.tktBool3: tktBool3,
+      Dbkeys.tktBool4: tktBool4,
+      Dbkeys.tktBool5: tktBool5,
+      Dbkeys.tktBool6: tktBool6,
+      Dbkeys.tktBool7: tktBool7,
+      Dbkeys.tktBool8: tktBool8,
+      Dbkeys.tktBool9: tktBool9,
+      Dbkeys.tktBool10: tktBool10,
+      Dbkeys.tktBool11: tktBool11,
+      Dbkeys.tktBool12: tktBool12,
+      Dbkeys.tktBool13: tktBool13,
+      Dbkeys.tktBool14: tktBool14,
+      Dbkeys.tktBool15: tktBool15,
+      Dbkeys.ticketCallInfoMap: ticketCallInfoMap,
+      Dbkeys.tktMap2: tktMap2,
+      Dbkeys.tktMap3: tktMap3,
+      Dbkeys.tktMap4: tktMap4,
+      Dbkeys.tktMap5: tktMap5,
+      Dbkeys.tktMap6: tktMap6,
+      Dbkeys.tktMap7: tktMap7,
+      Dbkeys.tktMap8: tktMap8,
+    };
+  }
+}
